@@ -1,12 +1,43 @@
-<!doctype html>
-<html lang="es">
-    <head><meta charset="utf-8"><title>GameVault</title></head>
-    <body>
-        <h1>Catálogo de videojuegos</h1>
-        {% for producto in productos %}
-        <p><a href="{% url 'shop:detalle' producto.id %}">{{ producto.nombre }}</a></p>
-        {% empty %}
-        <p>No hay productos disponibles.</p>
-        {% endfor %}
-    </body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}Inicio | GameVault{% endblock %}
+
+{% block content %}
+<section class="hero py-5">
+    <div class="container">
+        <div class="row align-items-center g-4">
+            <div class="col-lg-8">
+                <span class="badge text-bg-primary mb-3">Catálogo de videojuegos</span>
+                <h1 class="display-4 fw-bold">Descubre tu próxima aventura</h1>
+                <p class="lead text-body-secondary">Explora {{ total_productos }} juegos y encuentra nuevas historias para jugar.</p>
+                <a class="btn btn-primary btn-lg" href="#catalogo">Explorar catálogo</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="catalogo" class="pb-5">
+    <div class="container">
+        <h2 class="h3 mb-4">Catálogo ({{ total_productos }} juegos)</h2>
+        <div class="row g-4">
+            {% for producto in productos %}
+            <div class="col-md-6 col-lg-4">
+                <article class="card game-card h-100 shadow-sm">
+                    <div class="card-body">
+                        <span class="badge text-bg-secondary mb-3">{{ producto.genero|upper }}</span>
+                        <h3 class="h5">{{ producto.nombre }}</h3>
+                        <p class="mb-1"><strong>Plataforma:</strong> {{ producto.plataforma }}</p>
+                        <p class="mb-1"><strong>Año:</strong> {{ producto.anio }}</p>
+                        <p class="text-body-secondary">{{ producto.descripcion|truncatewords:10 }}</p>
+                        <p class="h5 text-primary">${{ producto.precio|floatformat:2 }}</p>
+                        <a href="{% url 'shop:detalle' producto.id %}" class="btn btn-sm btn-outline-primary">Ver detalle</a>
+                    </div>
+                </article>
+            </div>
+            {% empty %}
+            <div class="col-12"><p class="text-body-secondary">No hay productos disponibles.</p></div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

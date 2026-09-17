@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title>GameVault</title>
+  <rect width="64" height="64" rx="14" fill="#0d6efd"/>
+  <path d="M18 25h28a8 8 0 0 1 7.6 10.5l-4 12a5 5 0 0 1-8.9 1.2L37 42H27l-3.7 6.7a5 5 0 0 1-8.9-1.2l-4-12A8 8 0 0 1 18 25Z" fill="#fff"/>
+  <path d="M21 31v8M17 35h8M43 33h.1M48 37h.1" stroke="#0d6efd" stroke-width="3" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}{{ producto.nombre|default:"Detalle" }} | GameVault{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <a class="link-primary text-decoration-none" href="{% url 'shop:inicio' %}">&larr; Volver al inicio</a>
+        <div class="row justify-content-center mt-4">
+            <div class="col-lg-8">
+                <article class="card border-primary shadow">
+                    <div class="card-body p-4 p-md-5">
+                        {% if producto %}
+                        <span class="badge text-bg-primary mb-3">{{ producto.genero|upper }}</span>
+                        <h1 class="display-6 fw-bold">{{ producto.nombre }}</h1>
+                        <p class="lead text-body-secondary">{{ producto.descripcion }}</p>
+                        <hr />
+                        <dl class="row">
+                            <dt class="col-sm-4">Plataforma</dt><dd class="col-sm-8">{{ producto.plataforma }}</dd>
+                            <dt class="col-sm-4">Género</dt><dd class="col-sm-8">{{ producto.genero }}</dd>
+                            <dt class="col-sm-4">Año</dt><dd class="col-sm-8">{{ producto.anio }}</dd>
+                            <dt class="col-sm-4">Desarrollador</dt><dd class="col-sm-8">{{ producto.desarrollador }}</dd>
+                            <dt class="col-sm-4">Precio</dt><dd class="col-sm-8">${{ producto.precio|floatformat:2 }}</dd>
+                        </dl>
+                        {% if producto.precio > 50 %}
+                        <div class="alert alert-warning">Este juego pertenece a la selección premium.</div>
+                        {% endif %}
+                        {% else %}
+                        <h1 class="display-6 fw-bold">Producto no encontrado</h1>
+                        {% endif %}
+                        <a class="btn btn-primary" href="{% url 'shop:inicio' %}">Seguir explorando</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
